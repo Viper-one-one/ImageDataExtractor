@@ -3,7 +3,7 @@ from PIL import Image
 def extract_image_data(image_path):
     try:
         with Image.open(image_path).convert("L") as image:
-            img = image.resize((128, 64))
+            img = image.resize((128, 64), Image.Resampling.LANCZOS)
             pixels = list(img.getdata())
             #hex_values = [hex(p) for p in pixels]
             bitmap = ' ,'.join([f"0x{p:02X}" for p in pixels])
